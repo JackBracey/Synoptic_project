@@ -116,5 +116,17 @@
   <ItemGroup>
     <None Include="resources\upload.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\upload-grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\upload-dark-grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\delete.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
