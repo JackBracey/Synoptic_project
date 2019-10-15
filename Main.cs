@@ -16,6 +16,12 @@ namespace Media_Organiser
         private void Main_Load(object sender, EventArgs e)
         {
             menuBody.Height = 0;
+
+            foreach (Objects.Record record in DatabaseManager.GetAllRecords())
+            {
+                lstRecords.Rows.Add(null, record.name, record.type);
+            }
+
         }
 
         private void BtnMenu_Click(object sender, EventArgs e)

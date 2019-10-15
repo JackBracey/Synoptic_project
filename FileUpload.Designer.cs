@@ -42,7 +42,8 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lstFiles = new System.Windows.Forms.DataGridView();
-            this.Icon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tblIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.tblDir = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblFileExtension = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuBody.SuspendLayout();
@@ -165,6 +166,7 @@
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpload.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.BtnUpload_Click);
             // 
             // btnSearch
             // 
@@ -187,23 +189,32 @@
             this.lstFiles.AllowUserToResizeRows = false;
             this.lstFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lstFiles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Icon,
+            this.tblIcon,
+            this.tblDir,
             this.tblFileName,
             this.tblFileExtension});
             this.lstFiles.Location = new System.Drawing.Point(12, 57);
             this.lstFiles.Name = "lstFiles";
             this.lstFiles.ReadOnly = true;
             this.lstFiles.RowHeadersVisible = false;
+            this.lstFiles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.lstFiles.Size = new System.Drawing.Size(773, 347);
             this.lstFiles.TabIndex = 12;
             // 
             // Icon
             // 
-            this.Icon.HeaderText = "tblIcon";
-            this.Icon.Name = "Icon";
-            this.Icon.ReadOnly = true;
-            this.Icon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Icon.Width = 50;
+            this.tblIcon.HeaderText = "Icon";
+            this.tblIcon.Name = "tblIcon";
+            this.tblIcon.ReadOnly = true;
+            this.tblIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.tblIcon.Width = 50;
+            // 
+            // tblDir
+            // 
+            this.tblDir.HeaderText = "Directory";
+            this.tblDir.Name = "tblDir";
+            this.tblDir.ReadOnly = true;
+            this.tblDir.Visible = false;
             // 
             // tblFileName
             // 
@@ -259,8 +270,9 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridView lstFiles;
-        private System.Windows.Forms.DataGridViewImageColumn Icon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblDir;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblFileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblFileExtension;
+        private System.Windows.Forms.DataGridViewImageColumn tblIcon;
     }
 }

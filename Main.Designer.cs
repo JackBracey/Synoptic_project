@@ -36,8 +36,13 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.btnPlaylist = new System.Windows.Forms.Button();
             this.menuBody = new System.Windows.Forms.Panel();
+            this.lstRecords = new System.Windows.Forms.DataGridView();
+            this.tblIcon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblFileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuHeader.SuspendLayout();
             this.menuBody.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstRecords)).BeginInit();
             this.SuspendLayout();
             // 
             // menuTimer
@@ -109,6 +114,45 @@
             this.menuBody.Size = new System.Drawing.Size(53, 100);
             this.menuBody.TabIndex = 3;
             // 
+            // lstRecords
+            // 
+            this.lstRecords.AllowUserToAddRows = false;
+            this.lstRecords.AllowUserToDeleteRows = false;
+            this.lstRecords.AllowUserToOrderColumns = true;
+            this.lstRecords.AllowUserToResizeColumns = false;
+            this.lstRecords.AllowUserToResizeRows = false;
+            this.lstRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.lstRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tblIcon,
+            this.tblFileName,
+            this.tblFileType});
+            this.lstRecords.Location = new System.Drawing.Point(31, 57);
+            this.lstRecords.Name = "lstRecords";
+            this.lstRecords.ReadOnly = true;
+            this.lstRecords.RowHeadersVisible = false;
+            this.lstRecords.Size = new System.Drawing.Size(682, 339);
+            this.lstRecords.TabIndex = 4;
+            // 
+            // tblIcon
+            // 
+            this.tblIcon.HeaderText = "Icon";
+            this.tblIcon.Name = "tblIcon";
+            this.tblIcon.ReadOnly = true;
+            this.tblIcon.Width = 50;
+            // 
+            // tblFileName
+            // 
+            this.tblFileName.HeaderText = "File Name";
+            this.tblFileName.Name = "tblFileName";
+            this.tblFileName.ReadOnly = true;
+            this.tblFileName.Width = 500;
+            // 
+            // tblFileType
+            // 
+            this.tblFileType.HeaderText = "File Type";
+            this.tblFileType.Name = "tblFileType";
+            this.tblFileType.ReadOnly = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,12 +160,14 @@
             this.ClientSize = new System.Drawing.Size(739, 444);
             this.Controls.Add(this.menuBody);
             this.Controls.Add(this.menuHeader);
+            this.Controls.Add(this.lstRecords);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Media Organiser";
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuHeader.ResumeLayout(false);
             this.menuBody.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lstRecords)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -133,6 +179,10 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Button btnPlaylist;
         private System.Windows.Forms.Panel menuBody;
+        private System.Windows.Forms.DataGridView lstRecords;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblIcon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblFileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblFileType;
     }
 }
 

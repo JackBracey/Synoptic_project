@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -84,7 +86,7 @@ namespace Media_Organiser
                         fileType.Text.ToLower().Equals(file.Extension.ToLower()))
                     {
                         Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
-                        lstFiles.Rows.Add(icon, file.Name, file.Extension);
+                        lstFiles.Rows.Add(icon, file.Directory, file.Name, file.Extension);
                     }
                 }
             }
@@ -94,6 +96,25 @@ namespace Media_Organiser
         {
             lstFiles.Rows.Clear();
             InitialiseValues();
+        }
+
+        private void BtnUpload_Click(object sender, EventArgs e)
+        {
+            ArrayList failed = new ArrayList();
+            foreach (DataGridViewRow row in lstFiles.SelectedRows)
+            {
+                Objects.Record record = DatabaseManager.UploadFile(row.Cells[1].Value.ToString(),
+                    row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString());
+                if (record == null)
+                    failed.Add(row.Cells[2].Value.ToString());
+            }
+            if (failed.Count >= 1)
+                ShowPopup(failed);
+        }
+
+        private void ShowPopup(ArrayList failed)
+        {
+            
         }
     }
 }
