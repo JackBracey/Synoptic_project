@@ -31,13 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.menuTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnMenu = new System.Windows.Forms.Button();
             this.menuHeader = new System.Windows.Forms.Panel();
-            this.btnUpload = new System.Windows.Forms.Button();
-            this.btnPlaylist = new System.Windows.Forms.Button();
+            this.btnMenu = new System.Windows.Forms.Button();
             this.menuBody = new System.Windows.Forms.Panel();
+            this.btnPlaylist = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.lstRecords = new System.Windows.Forms.DataGridView();
-            this.tblIcon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddToPlaylist = new System.Windows.Forms.Button();
+            this.btnRemoveSelected = new System.Windows.Forms.Button();
+            this.tblDir = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblFileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuHeader.SuspendLayout();
@@ -49,6 +51,15 @@
             // 
             this.menuTimer.Interval = 10;
             this.menuTimer.Tick += new System.EventHandler(this.MenuTimer_Tick);
+            // 
+            // menuHeader
+            // 
+            this.menuHeader.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.menuHeader.Controls.Add(this.btnMenu);
+            this.menuHeader.Location = new System.Drawing.Point(674, 12);
+            this.menuHeader.Name = "menuHeader";
+            this.menuHeader.Size = new System.Drawing.Size(53, 39);
+            this.menuHeader.TabIndex = 2;
             // 
             // btnMenu
             // 
@@ -65,29 +76,15 @@
             this.btnMenu.UseVisualStyleBackColor = false;
             this.btnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
-            // menuHeader
+            // menuBody
             // 
-            this.menuHeader.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.menuHeader.Controls.Add(this.btnMenu);
-            this.menuHeader.Location = new System.Drawing.Point(674, 12);
-            this.menuHeader.Name = "menuHeader";
-            this.menuHeader.Size = new System.Drawing.Size(53, 39);
-            this.menuHeader.TabIndex = 2;
-            // 
-            // btnUpload
-            // 
-            this.btnUpload.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.btnUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpload.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpload.Image = global::Media_Organiser.Properties.Resources.upload;
-            this.btnUpload.Location = new System.Drawing.Point(0, 7);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(53, 39);
-            this.btnUpload.TabIndex = 2;
-            this.btnUpload.UseVisualStyleBackColor = false;
-            this.btnUpload.Click += new System.EventHandler(this.BtnUpload_Click);
+            this.menuBody.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.menuBody.Controls.Add(this.btnPlaylist);
+            this.menuBody.Controls.Add(this.btnUpload);
+            this.menuBody.Location = new System.Drawing.Point(674, 50);
+            this.menuBody.Name = "menuBody";
+            this.menuBody.Size = new System.Drawing.Size(53, 100);
+            this.menuBody.TabIndex = 3;
             // 
             // btnPlaylist
             // 
@@ -104,15 +101,20 @@
             this.btnPlaylist.UseVisualStyleBackColor = false;
             this.btnPlaylist.Click += new System.EventHandler(this.BtnPlaylist_Click);
             // 
-            // menuBody
+            // btnUpload
             // 
-            this.menuBody.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.menuBody.Controls.Add(this.btnPlaylist);
-            this.menuBody.Controls.Add(this.btnUpload);
-            this.menuBody.Location = new System.Drawing.Point(674, 50);
-            this.menuBody.Name = "menuBody";
-            this.menuBody.Size = new System.Drawing.Size(53, 100);
-            this.menuBody.TabIndex = 3;
+            this.btnUpload.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpload.Image = global::Media_Organiser.Properties.Resources.upload;
+            this.btnUpload.Location = new System.Drawing.Point(0, 7);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(53, 39);
+            this.btnUpload.TabIndex = 2;
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.BtnUpload_Click);
             // 
             // lstRecords
             // 
@@ -123,29 +125,54 @@
             this.lstRecords.AllowUserToResizeRows = false;
             this.lstRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lstRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.tblIcon,
+            this.tblDir,
             this.tblFileName,
             this.tblFileType});
             this.lstRecords.Location = new System.Drawing.Point(31, 57);
             this.lstRecords.Name = "lstRecords";
             this.lstRecords.ReadOnly = true;
             this.lstRecords.RowHeadersVisible = false;
+            this.lstRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.lstRecords.Size = new System.Drawing.Size(682, 339);
             this.lstRecords.TabIndex = 4;
             // 
-            // tblIcon
+            // btnAddToPlaylist
             // 
-            this.tblIcon.HeaderText = "Icon";
-            this.tblIcon.Name = "tblIcon";
-            this.tblIcon.ReadOnly = true;
-            this.tblIcon.Width = 50;
+            this.btnAddToPlaylist.Image = global::Media_Organiser.Properties.Resources.playlist_dark;
+            this.btnAddToPlaylist.Location = new System.Drawing.Point(559, 402);
+            this.btnAddToPlaylist.Name = "btnAddToPlaylist";
+            this.btnAddToPlaylist.Size = new System.Drawing.Size(154, 23);
+            this.btnAddToPlaylist.TabIndex = 5;
+            this.btnAddToPlaylist.Text = "Add Selected To Playlist";
+            this.btnAddToPlaylist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddToPlaylist.UseVisualStyleBackColor = true;
+            this.btnAddToPlaylist.Click += new System.EventHandler(this.BtnAddToPlaylist_Click);
+            // 
+            // btnRemoveSelected
+            // 
+            this.btnRemoveSelected.Image = global::Media_Organiser.Properties.Resources.delete;
+            this.btnRemoveSelected.Location = new System.Drawing.Point(428, 402);
+            this.btnRemoveSelected.Name = "btnRemoveSelected";
+            this.btnRemoveSelected.Size = new System.Drawing.Size(125, 23);
+            this.btnRemoveSelected.TabIndex = 6;
+            this.btnRemoveSelected.Text = "Remove Selected";
+            this.btnRemoveSelected.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveSelected.UseVisualStyleBackColor = true;
+            this.btnRemoveSelected.Click += new System.EventHandler(this.BtnRemoveSelected_Click);
+            // 
+            // tblDir
+            // 
+            this.tblDir.HeaderText = "Directory";
+            this.tblDir.Name = "tblDir";
+            this.tblDir.ReadOnly = true;
+            this.tblDir.Visible = false;
             // 
             // tblFileName
             // 
             this.tblFileName.HeaderText = "File Name";
             this.tblFileName.Name = "tblFileName";
             this.tblFileName.ReadOnly = true;
-            this.tblFileName.Width = 500;
+            this.tblFileName.Width = 550;
             // 
             // tblFileType
             // 
@@ -158,6 +185,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 444);
+            this.Controls.Add(this.btnRemoveSelected);
+            this.Controls.Add(this.btnAddToPlaylist);
             this.Controls.Add(this.menuBody);
             this.Controls.Add(this.menuHeader);
             this.Controls.Add(this.lstRecords);
@@ -180,7 +209,9 @@
         private System.Windows.Forms.Button btnPlaylist;
         private System.Windows.Forms.Panel menuBody;
         private System.Windows.Forms.DataGridView lstRecords;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblIcon;
+        private System.Windows.Forms.Button btnAddToPlaylist;
+        private System.Windows.Forms.Button btnRemoveSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblDir;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblFileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblFileType;
     }

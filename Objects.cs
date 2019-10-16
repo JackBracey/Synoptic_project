@@ -27,8 +27,26 @@ namespace Media_Organiser
 
         public class Playlist
         {
-            public long id { get; set; }
+            public Playlist(string id, string name)
+            {
+                this.id = id;
+                this.name = name;
+            }
+            public Playlist() { }
+            public string id { get; set; }
             public string name { get; set; }
+        }
+
+        public class PlaylistSong
+        {
+            public PlaylistSong(string mediaId, string playlistId)
+            {
+                this.mediaId = mediaId;
+                this.playlistId = playlistId;
+            }
+            public PlaylistSong() { }
+            public string mediaId { get; set; }
+            public string playlistId { get; set; }
         }
 
     }

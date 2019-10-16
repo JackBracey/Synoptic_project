@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Media_Organiser
 {
@@ -15,6 +16,15 @@ namespace Media_Organiser
         private void Playlists_Load(object sender, EventArgs e)
         {
             menuBody.Height = 0;
+            LoadAllPlaylists();
+        }
+        private void LoadAllPlaylists()
+        {
+            lstPlaylists.Rows.Clear();
+            foreach (Dictionary<object, object> playlist in DatabaseManager.GetAllPlaylists())
+            {
+                lstPlaylists.Rows.Add(playlist.Keys, playlist.Values);
+            }
         }
         private void BtnMenu_Click(object sender, EventArgs e)
         {
@@ -54,6 +64,25 @@ namespace Media_Organiser
                     isMenuOpen = true;
                 }
             }
+        }
+
+        private void BtnNewPlaylist_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtPlaylistName.Text))
+                MessageBox.Show("Enter a playlist name");
+            else
+            {
+                DatabaseManager.AddPlaylist(txtPlaylistName.Text);
+            }
+        }
+
+        private void BtnDeletePlaylist_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in lstPlaylists.SelectedRows)
+            {
+
+            }
+            LoadAllPlaylists();
         }
     }
 }

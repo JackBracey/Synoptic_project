@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Windows.Forms;
 
 namespace Media_Organiser
@@ -16,12 +17,16 @@ namespace Media_Organiser
         private void Main_Load(object sender, EventArgs e)
         {
             menuBody.Height = 0;
+            ShowAllRecords();
+        }
 
+        private void ShowAllRecords()
+        {
+            lstRecords.Rows.Clear();
             foreach (Objects.Record record in DatabaseManager.GetAllRecords())
             {
-                lstRecords.Rows.Add(null, record.name, record.type);
+                lstRecords.Rows.Add(record.path, record.name, record.type);
             }
-
         }
 
         private void BtnMenu_Click(object sender, EventArgs e)
@@ -61,6 +66,25 @@ namespace Media_Organiser
             this.Hide();
             var playlistForm = new Playlists();
             playlistForm.Show();
+        }
+
+        private void BtnRemoveSelected_Click(object sender, EventArgs e)
+        {
+            ArrayList selected = new ArrayList();
+            foreach (DataGridViewRow row in lstRecords.SelectedRows)
+            {
+                selected.Add(row.Cells[1].Value.ToString()+@"\"+row.Cells[2].Value.ToString());
+            }
+            if (selected.Count >= 1)
+            {
+                DatabaseManager.RemoveRecords(selected);
+                ShowAllRecords();
+            }
+        }
+
+        private void BtnAddToPlaylist_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

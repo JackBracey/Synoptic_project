@@ -36,8 +36,16 @@
             this.menuHeader = new System.Windows.Forms.Panel();
             this.btnMenu = new System.Windows.Forms.Button();
             this.menuTimer = new System.Windows.Forms.Timer(this.components);
+            this.lstPlaylists = new System.Windows.Forms.DataGridView();
+            this.tblName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblNoRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnNewPlaylist = new System.Windows.Forms.Button();
+            this.btnEditPlaylist = new System.Windows.Forms.Button();
+            this.txtPlaylistName = new System.Windows.Forms.TextBox();
+            this.btnDeletePlaylist = new System.Windows.Forms.Button();
             this.menuBody.SuspendLayout();
             this.menuHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lstPlaylists)).BeginInit();
             this.SuspendLayout();
             // 
             // menuBody
@@ -109,20 +117,99 @@
             this.menuTimer.Interval = 10;
             this.menuTimer.Tick += new System.EventHandler(this.MenuTimer_Tick);
             // 
+            // lstPlaylists
+            // 
+            this.lstPlaylists.AllowUserToAddRows = false;
+            this.lstPlaylists.AllowUserToDeleteRows = false;
+            this.lstPlaylists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.lstPlaylists.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tblName,
+            this.tblNoRecords});
+            this.lstPlaylists.Location = new System.Drawing.Point(28, 57);
+            this.lstPlaylists.Name = "lstPlaylists";
+            this.lstPlaylists.ReadOnly = true;
+            this.lstPlaylists.RowHeadersVisible = false;
+            this.lstPlaylists.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.lstPlaylists.Size = new System.Drawing.Size(745, 342);
+            this.lstPlaylists.TabIndex = 6;
+            // 
+            // tblName
+            // 
+            this.tblName.HeaderText = "Name";
+            this.tblName.Name = "tblName";
+            this.tblName.ReadOnly = true;
+            this.tblName.Width = 610;
+            // 
+            // tblNoRecords
+            // 
+            this.tblNoRecords.HeaderText = "Number Of Records";
+            this.tblNoRecords.Name = "tblNoRecords";
+            this.tblNoRecords.ReadOnly = true;
+            // 
+            // btnNewPlaylist
+            // 
+            this.btnNewPlaylist.Image = global::Media_Organiser.Properties.Resources.add;
+            this.btnNewPlaylist.Location = new System.Drawing.Point(560, 405);
+            this.btnNewPlaylist.Name = "btnNewPlaylist";
+            this.btnNewPlaylist.Size = new System.Drawing.Size(112, 23);
+            this.btnNewPlaylist.TabIndex = 8;
+            this.btnNewPlaylist.Text = "Add New Playlist";
+            this.btnNewPlaylist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNewPlaylist.UseVisualStyleBackColor = true;
+            this.btnNewPlaylist.Click += new System.EventHandler(this.BtnNewPlaylist_Click);
+            // 
+            // btnEditPlaylist
+            // 
+            this.btnEditPlaylist.Image = global::Media_Organiser.Properties.Resources.edit;
+            this.btnEditPlaylist.Location = new System.Drawing.Point(678, 405);
+            this.btnEditPlaylist.Name = "btnEditPlaylist";
+            this.btnEditPlaylist.Size = new System.Drawing.Size(95, 23);
+            this.btnEditPlaylist.TabIndex = 7;
+            this.btnEditPlaylist.Text = "Edit Selected";
+            this.btnEditPlaylist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditPlaylist.UseVisualStyleBackColor = true;
+            // 
+            // txtPlaylistName
+            // 
+            this.txtPlaylistName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPlaylistName.Location = new System.Drawing.Point(319, 406);
+            this.txtPlaylistName.Name = "txtPlaylistName";
+            this.txtPlaylistName.Size = new System.Drawing.Size(235, 20);
+            this.txtPlaylistName.TabIndex = 9;
+            // 
+            // btnDeletePlaylist
+            // 
+            this.btnDeletePlaylist.Image = global::Media_Organiser.Properties.Resources.delete;
+            this.btnDeletePlaylist.Location = new System.Drawing.Point(216, 405);
+            this.btnDeletePlaylist.Name = "btnDeletePlaylist";
+            this.btnDeletePlaylist.Size = new System.Drawing.Size(97, 23);
+            this.btnDeletePlaylist.TabIndex = 10;
+            this.btnDeletePlaylist.Text = "Delete Playlist";
+            this.btnDeletePlaylist.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDeletePlaylist.UseVisualStyleBackColor = true;
+            this.btnDeletePlaylist.Click += new System.EventHandler(this.BtnDeletePlaylist_Click);
+            // 
             // Playlists
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 445);
+            this.Controls.Add(this.btnDeletePlaylist);
+            this.Controls.Add(this.txtPlaylistName);
+            this.Controls.Add(this.btnNewPlaylist);
+            this.Controls.Add(this.btnEditPlaylist);
             this.Controls.Add(this.menuBody);
             this.Controls.Add(this.menuHeader);
+            this.Controls.Add(this.lstPlaylists);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Playlists";
             this.Text = "Playlists";
             this.Load += new System.EventHandler(this.Playlists_Load);
             this.menuBody.ResumeLayout(false);
             this.menuHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lstPlaylists)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -134,5 +221,12 @@
         private System.Windows.Forms.Panel menuHeader;
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Timer menuTimer;
+        private System.Windows.Forms.DataGridView lstPlaylists;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblNoRecords;
+        private System.Windows.Forms.Button btnEditPlaylist;
+        private System.Windows.Forms.Button btnNewPlaylist;
+        private System.Windows.Forms.TextBox txtPlaylistName;
+        private System.Windows.Forms.Button btnDeletePlaylist;
     }
 }
