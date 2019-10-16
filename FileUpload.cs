@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -26,7 +25,7 @@ namespace Media_Organiser
         {
             menuBody.Height = 0;
             fileType.SelectedIndex = 0;
-            txtDir.Text = "";
+            txtDir.Text = DatabaseManager.GetSettings(DatabaseManager.DIR_SETTING);
         }
 
         private void BtnMenu_Click(object sender, EventArgs e)
@@ -89,6 +88,7 @@ namespace Media_Organiser
                         lstFiles.Rows.Add(icon, file.Directory, file.Name, file.Extension);
                     }
                 }
+                DatabaseManager.UpdateSettings(DatabaseManager.DIR_SETTING, txtDir.Text);
             }
         }
 
@@ -114,7 +114,11 @@ namespace Media_Organiser
 
         private void ShowPopup(ArrayList failed)
         {
-            
+            string failMessage = "Failed uploads:";
+            foreach (string fail in failed)
+                failMessage += "\n" + failed;
+            failMessage += "\nThe files were above 2mb, the file " +
+                "could not be added, but we will look in the file directory when we use it";
         }
     }
 }

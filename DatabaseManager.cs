@@ -12,6 +12,9 @@ namespace Media_Organiser
         private static string MEDIA_TABLE = "media";
         private static string PLAYLIST_TABLE = "playlist";
         private static string PLAYLIST_SONG_TABLE = "playlistsong";
+        private static string SETTINGS_TABLE = "settings";
+
+        public static string DIR_SETTING = "directory";
 
         public static Objects.Record UploadFile(string fileDir, string name, string extension)
         {
@@ -19,14 +22,23 @@ namespace Media_Organiser
             {
                 var records = db.GetCollection<Objects.Record>(MEDIA_TABLE);
 
-                String filename = fileDir + @"\" + name;
-                Objects.Record record = new Objects.Record(filename.GetHashCode().ToString(), name, fileDir, extension, DateTime.Now);
+                Objects.Record record = new Objects.Record(name.GetHashCode().ToString(), name, fileDir, extension, DateTime.Now);
 
                 bool success = false;
 
                 success = records.Upsert(record);
+
+                if (db.FileStorage.Exists(name.GetHashCode().ToString()))
+                    db.FileStorage.Delete(name.GetHashCode().ToString());
                 
-                db.FileStorage.Upload(filename.GetHashCode().ToString(), filename);
+                try
+                {
+                    db.FileStorage.Upload(name.GetHashCode().ToString(), name);
+                } catch (Exception e)
+                {
+                    success = false;
+                    Console.Write(e);
+                }
 
                 if (success)
                     return record;
@@ -42,6 +54,15 @@ namespace Media_Organiser
                 Objects.Playlist playlist = new Objects.Playlist(name.GetHashCode().ToString(), name);
 
                 collection.Upsert(playlist);
+            }
+        }
+
+        public static void DeletePlaylist(string name)
+        {
+            using (LiteDatabase db = new LiteDatabase(DATABASE_LOCATION))
+            {
+                var collection = db.GetCollection<Objects.Playlist>(PLAYLIST_TABLE);
+                collection.Delete(name.GetHashCode().ToString());
             }
         }
 
@@ -70,17 +91,16 @@ namespace Media_Organiser
                 var playlistSongs = db.GetCollection<Objects.PlaylistSong>(PLAYLIST_SONG_TABLE);
 
                 ArrayList list = new ArrayList();
+                
 
-                IEnumerator playlistEnumerator = playlists.FindAll().GetEnumerator();
-
-                while (playlistEnumerator.MoveNext())
+                foreach (Objects.Playlist playlist in playlists.FindAll())
                 {
-                    int count = playlistSongs.Count(x => x.playlistId.Equals(playlistEnumerator.Current/*Need to check the id here!*/));
-                    Dictionary<object, int> dictionary = new Dictionary<object, int>();
-                    dictionary.Add(playlistEnumerator.Current, 1);
+                    int count = playlistSongs.Count(x => x.playlistId.Equals(playlist.id));
+                    Dictionary<Objects.Playlist, int> dictionary = new Dictionary<Objects.Playlist, int>();
+                    dictionary.Add(playlist, count);
                     list.Add(dictionary);
                 }
-                
+
                 return list;
             }
         }
@@ -110,6 +130,78 @@ namespace Media_Organiser
                     musicInPlaylist.Delete(x => x.playlistId.Equals(pl.GetHashCode().ToString()));
                 }
             }
-        }        
+        }
+        
+        public static void UpdateSettings(string id, string setting)
+        {
+            using (LiteDatabase db = new LiteDatabase(DATABASE_LOCATION))
+            {
+                var settings = db.GetCollection<Objects.Settings>(SETTINGS_TABLE);
+                if (!String.IsNullOrEmpty(id) && !String.IsNullOrEmpty(setting))
+                {
+                    Objects.Settings cSetting = new Objects.Settings(id, setting);
+                    settings.Upsert(cSetting);
+                }
+            }
+        }
+
+        public static string GetSettings(string id)
+        {
+            using (LiteDatabase db = new LiteDatabase(DATABASE_LOCATION))
+            {
+                var settings = db.GetCollection<Objects.Settings>(SETTINGS_TABLE);
+                if (!String.IsNullOrEmpty(id) && settings.Exists(x => x.id.Equals(id)))
+                {
+                    return settings.FindOne(x => x.id.Equals(id)).setting;
+                }
+                return "";
+            }
+        }
+
+        public static ArrayList GetSongsInPlaylist(string playlistName)
+        {
+            using (LiteDatabase db = new LiteDatabase(DATABASE_LOCATION))
+            {
+                ArrayList list = new ArrayList();
+
+                if (!String.IsNullOrEmpty(playlistName))
+                {
+                    var playlistTable = db.GetCollection<Objects.Playlist>(PLAYLIST_TABLE);
+                    var playlistSongTable = db.GetCollection<Objects.PlaylistSong>(PLAYLIST_SONG_TABLE);
+                    var record = db.GetCollection<Objects.Record>(MEDIA_TABLE);
+
+                    Objects.Playlist playlist = playlistTable.FindById(playlistName.GetHashCode().ToString());
+
+                    ArrayList playlistSongs = new ArrayList();
+
+                    foreach (Objects.PlaylistSong ps in playlistSongTable.Find(x => x.playlistId.Equals(playlist.id)))
+                        playlistSongs.Add(ps);
+
+                    foreach (Objects.PlaylistSong ps in playlistSongs)
+                        list.Add(record.FindById(ps.mediaId));
+                }
+
+                return list;
+            }
+        }
+
+        public static void SetRecordToPlaylist(string playlistName, ArrayList records)
+        {
+            using (LiteDatabase db = new LiteDatabase(DATABASE_LOCATION))
+            {
+                var playlistTable = db.GetCollection<Objects.Playlist>(PLAYLIST_TABLE);
+                var playlistSongTable = db.GetCollection<Objects.PlaylistSong>(PLAYLIST_SONG_TABLE);
+                var recordTable = db.GetCollection<Objects.Record>(MEDIA_TABLE);
+
+                foreach (string recordName in records)
+                {
+                    Objects.Playlist playlist = playlistTable.FindById(playlistName.GetHashCode().ToString());
+                    Objects.Record record = recordTable.FindById(recordName.GetHashCode().ToString());
+                    Objects.PlaylistSong playlistSong = new Objects.PlaylistSong(playlist.id+record.id, record.id, playlist.id);
+                    playlistSongTable.Upsert(playlistSong);
+                }
+            }
+        }
+
     }
 }

@@ -84,7 +84,13 @@ namespace Media_Organiser
 
         private void BtnAddToPlaylist_Click(object sender, EventArgs e)
         {
+            ArrayList list = new ArrayList();
 
+            foreach (DataGridViewRow row in lstRecords.SelectedRows)
+                list.Add(row.Cells[1].Value.ToString());
+
+            var recordToPlaylist = new RecordToPlaylist(list);
+            recordToPlaylist.Show();
         }
     }
 }

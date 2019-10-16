@@ -21,10 +21,9 @@ namespace Media_Organiser
         private void LoadAllPlaylists()
         {
             lstPlaylists.Rows.Clear();
-            foreach (Dictionary<object, object> playlist in DatabaseManager.GetAllPlaylists())
-            {
-                lstPlaylists.Rows.Add(playlist.Keys, playlist.Values);
-            }
+            foreach (Dictionary<Objects.Playlist, int> playlist in DatabaseManager.GetAllPlaylists())
+                foreach(KeyValuePair<Objects.Playlist, int> item in playlist)
+                    lstPlaylists.Rows.Add(item.Key.name, item.Value);
         }
         private void BtnMenu_Click(object sender, EventArgs e)
         {
@@ -73,16 +72,26 @@ namespace Media_Organiser
             else
             {
                 DatabaseManager.AddPlaylist(txtPlaylistName.Text);
+                LoadAllPlaylists();
             }
         }
 
         private void BtnDeletePlaylist_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in lstPlaylists.SelectedRows)
-            {
-
-            }
+                DatabaseManager.DeletePlaylist(row.Cells[0].Value.ToString());
             LoadAllPlaylists();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadAllPlaylists();
+        }
+
+        private void btnEditPlaylist_Click(object sender, EventArgs e)
+        {
+            var editPlaylist = new EditPlaylist(lstPlaylists.SelectedRows[0].Cells[0].Value.ToString());
+            editPlaylist.Show();
         }
     }
 }
