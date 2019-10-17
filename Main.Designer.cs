@@ -37,11 +37,13 @@
             this.btnPlaylist = new System.Windows.Forms.Button();
             this.btnUpload = new System.Windows.Forms.Button();
             this.lstRecords = new System.Windows.Forms.DataGridView();
-            this.btnAddToPlaylist = new System.Windows.Forms.Button();
-            this.btnRemoveSelected = new System.Windows.Forms.Button();
             this.tblDir = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblFileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddToPlaylist = new System.Windows.Forms.Button();
+            this.btnRemoveSelected = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.menuHeader.SuspendLayout();
             this.menuBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstRecords)).BeginInit();
@@ -136,6 +138,26 @@
             this.lstRecords.Size = new System.Drawing.Size(682, 339);
             this.lstRecords.TabIndex = 4;
             // 
+            // tblDir
+            // 
+            this.tblDir.HeaderText = "Directory";
+            this.tblDir.Name = "tblDir";
+            this.tblDir.ReadOnly = true;
+            this.tblDir.Visible = false;
+            // 
+            // tblFileName
+            // 
+            this.tblFileName.HeaderText = "File Name";
+            this.tblFileName.Name = "tblFileName";
+            this.tblFileName.ReadOnly = true;
+            this.tblFileName.Width = 550;
+            // 
+            // tblFileType
+            // 
+            this.tblFileType.HeaderText = "File Type";
+            this.tblFileType.Name = "tblFileType";
+            this.tblFileType.ReadOnly = true;
+            // 
             // btnAddToPlaylist
             // 
             this.btnAddToPlaylist.Image = global::Media_Organiser.Properties.Resources.playlist_dark;
@@ -160,31 +182,33 @@
             this.btnRemoveSelected.UseVisualStyleBackColor = true;
             this.btnRemoveSelected.Click += new System.EventHandler(this.BtnRemoveSelected_Click);
             // 
-            // tblDir
+            // txtSearch
             // 
-            this.tblDir.HeaderText = "Directory";
-            this.tblDir.Name = "tblDir";
-            this.tblDir.ReadOnly = true;
-            this.tblDir.Visible = false;
+            this.txtSearch.Location = new System.Drawing.Point(137, 22);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(416, 20);
+            this.txtSearch.TabIndex = 7;
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tblFileName
+            // btnSearch
             // 
-            this.tblFileName.HeaderText = "File Name";
-            this.tblFileName.Name = "tblFileName";
-            this.tblFileName.ReadOnly = true;
-            this.tblFileName.Width = 550;
-            // 
-            // tblFileType
-            // 
-            this.tblFileType.HeaderText = "File Type";
-            this.tblFileType.Name = "tblFileType";
-            this.tblFileType.ReadOnly = true;
+            this.btnSearch.Image = global::Media_Organiser.Properties.Resources.search;
+            this.btnSearch.Location = new System.Drawing.Point(559, 21);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 8;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 444);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnRemoveSelected);
             this.Controls.Add(this.btnAddToPlaylist);
             this.Controls.Add(this.menuBody);
@@ -198,6 +222,7 @@
             this.menuBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lstRecords)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -214,6 +239,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tblDir;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblFileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblFileType;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 

@@ -32,9 +32,9 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lstPlaylists = new System.Windows.Forms.DataGridView();
-            this.btnSelectPlaylist = new System.Windows.Forms.Button();
             this.tblName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblNumberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSelectPlaylist = new System.Windows.Forms.Button();
             this.btnRemoveSelected = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lstPlaylists)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +56,7 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lstPlaylists
             // 
@@ -74,16 +75,6 @@
             this.lstPlaylists.Size = new System.Drawing.Size(572, 293);
             this.lstPlaylists.TabIndex = 2;
             // 
-            // btnSelectPlaylist
-            // 
-            this.btnSelectPlaylist.Location = new System.Drawing.Point(477, 347);
-            this.btnSelectPlaylist.Name = "btnSelectPlaylist";
-            this.btnSelectPlaylist.Size = new System.Drawing.Size(124, 23);
-            this.btnSelectPlaylist.TabIndex = 3;
-            this.btnSelectPlaylist.Text = "Select Playlist";
-            this.btnSelectPlaylist.UseVisualStyleBackColor = true;
-            this.btnSelectPlaylist.Click += new System.EventHandler(this.btnSelectPlaylist_Click);
-            // 
             // tblName
             // 
             this.tblName.HeaderText = "Playlist Name";
@@ -97,6 +88,16 @@
             this.tblNumberOfRecords.Name = "tblNumberOfRecords";
             this.tblNumberOfRecords.ReadOnly = true;
             this.tblNumberOfRecords.Width = 90;
+            // 
+            // btnSelectPlaylist
+            // 
+            this.btnSelectPlaylist.Location = new System.Drawing.Point(477, 347);
+            this.btnSelectPlaylist.Name = "btnSelectPlaylist";
+            this.btnSelectPlaylist.Size = new System.Drawing.Size(124, 23);
+            this.btnSelectPlaylist.TabIndex = 3;
+            this.btnSelectPlaylist.Text = "Select Playlist";
+            this.btnSelectPlaylist.UseVisualStyleBackColor = true;
+            this.btnSelectPlaylist.Click += new System.EventHandler(this.btnSelectPlaylist_Click);
             // 
             // btnRemoveSelected
             // 

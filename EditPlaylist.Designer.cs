@@ -34,7 +34,7 @@
             this.tblName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblExtension = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnRemoveRecords = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lstPlaylistSongs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,6 +43,7 @@
             this.txtPlaylistName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPlaylistName.Location = new System.Drawing.Point(142, 20);
             this.txtPlaylistName.Name = "txtPlaylistName";
+            this.txtPlaylistName.ReadOnly = true;
             this.txtPlaylistName.Size = new System.Drawing.Size(284, 26);
             this.txtPlaylistName.TabIndex = 0;
             this.txtPlaylistName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -88,23 +89,24 @@
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // btnSave
+            // btnRemoveRecords
             // 
-            this.btnSave.Image = global::Media_Organiser.Properties.Resources.save3;
-            this.btnSave.Location = new System.Drawing.Point(490, 318);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(65, 23);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnRemoveRecords.Image = global::Media_Organiser.Properties.Resources.delete;
+            this.btnRemoveRecords.Location = new System.Drawing.Point(380, 318);
+            this.btnRemoveRecords.Name = "btnRemoveRecords";
+            this.btnRemoveRecords.Size = new System.Drawing.Size(175, 23);
+            this.btnRemoveRecords.TabIndex = 4;
+            this.btnRemoveRecords.Text = "Remove Selected Records";
+            this.btnRemoveRecords.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveRecords.UseVisualStyleBackColor = true;
+            this.btnRemoveRecords.Click += new System.EventHandler(this.btnRemoveRecords_Click);
             // 
             // EditPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 353);
-            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnRemoveRecords);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lstPlaylistSongs);
             this.Controls.Add(this.txtPlaylistName);
@@ -125,6 +127,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tblName;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblExtension;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnRemoveRecords;
     }
 }

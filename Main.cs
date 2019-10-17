@@ -70,15 +70,18 @@ namespace Media_Organiser
 
         private void BtnRemoveSelected_Click(object sender, EventArgs e)
         {
-            ArrayList selected = new ArrayList();
-            foreach (DataGridViewRow row in lstRecords.SelectedRows)
+            if (MessageBox.Show("Are you sure you want to delete this record", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                selected.Add(row.Cells[1].Value.ToString()+@"\"+row.Cells[2].Value.ToString());
-            }
-            if (selected.Count >= 1)
-            {
-                DatabaseManager.RemoveRecords(selected);
-                ShowAllRecords();
+                ArrayList selected = new ArrayList();
+                foreach (DataGridViewRow row in lstRecords.SelectedRows)
+                {
+                    selected.Add(row.Cells[1].Value.ToString());
+                }
+                if (selected.Count >= 1)
+                {
+                    DatabaseManager.RemoveRecords(selected);
+                    ShowAllRecords();
+                }
             }
         }
 
@@ -91,6 +94,20 @@ namespace Media_Organiser
 
             var recordToPlaylist = new RecordToPlaylist(list);
             recordToPlaylist.Show();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtSearch.Text))
+            {
+                lstRecords.Rows.Clear();
+                foreach (Objects.Record record in DatabaseManager.GetRecordFiltered(txtSearch.Text))
+                {
+                    lstRecords.Rows.Add(record.path, record.name, record.type);
+                }
+            }
+            else
+                ShowAllRecords();
         }
     }
 }

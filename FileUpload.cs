@@ -26,6 +26,8 @@ namespace Media_Organiser
             menuBody.Height = 0;
             fileType.SelectedIndex = 0;
             txtDir.Text = DatabaseManager.GetSettings(DatabaseManager.DIR_SETTING);
+            fileType.Text = DatabaseManager.GetSettings(DatabaseManager.TYPE_SETTING);
+            SearchDirectory();
         }
 
         private void BtnMenu_Click(object sender, EventArgs e)
@@ -71,6 +73,11 @@ namespace Media_Organiser
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
+            SearchDirectory();
+        }
+
+        private void SearchDirectory()
+        {
             if (!String.IsNullOrEmpty(txtDir.Text))
             {
                 String dir = txtDir.Text;
@@ -79,9 +86,9 @@ namespace Media_Organiser
                 DirectoryInfo di = new DirectoryInfo(dir);
                 FileInfo[] files = di.GetFiles();
 
-                foreach(FileInfo file in files)
+                foreach (FileInfo file in files)
                 {
-                    if (fileType.Text.Equals("*")||fileType.Text.Equals("Select File Type")||
+                    if (fileType.Text.Equals("*") || fileType.Text.Equals("Select File Type") ||
                         fileType.Text.ToLower().Equals(file.Extension.ToLower()))
                     {
                         Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
@@ -89,6 +96,7 @@ namespace Media_Organiser
                     }
                 }
                 DatabaseManager.UpdateSettings(DatabaseManager.DIR_SETTING, txtDir.Text);
+                DatabaseManager.UpdateSettings(DatabaseManager.TYPE_SETTING, fileType.Text);
             }
         }
 

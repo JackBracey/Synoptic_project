@@ -31,7 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Playlists));
             this.menuBody = new System.Windows.Forms.Panel();
+            this.btnMain = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.menuHeader = new System.Windows.Forms.Panel();
+            this.btnMenu = new System.Windows.Forms.Button();
             this.menuTimer = new System.Windows.Forms.Timer(this.components);
             this.lstPlaylists = new System.Windows.Forms.DataGridView();
             this.tblName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,11 +44,8 @@
             this.btnDeletePlaylist = new System.Windows.Forms.Button();
             this.btnNewPlaylist = new System.Windows.Forms.Button();
             this.btnEditPlaylist = new System.Windows.Forms.Button();
-            this.btnMain = new System.Windows.Forms.Button();
-            this.btnUpload = new System.Windows.Forms.Button();
-            this.btnMenu = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.menuBody.SuspendLayout();
             this.menuHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lstPlaylists)).BeginInit();
@@ -61,6 +61,36 @@
             this.menuBody.Size = new System.Drawing.Size(53, 100);
             this.menuBody.TabIndex = 5;
             // 
+            // btnMain
+            // 
+            this.btnMain.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnMain.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMain.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btnMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMain.Image = global::Media_Organiser.Properties.Resources._return;
+            this.btnMain.Location = new System.Drawing.Point(0, 52);
+            this.btnMain.Name = "btnMain";
+            this.btnMain.Size = new System.Drawing.Size(53, 39);
+            this.btnMain.TabIndex = 3;
+            this.btnMain.UseVisualStyleBackColor = false;
+            this.btnMain.Click += new System.EventHandler(this.BtnMain_Click);
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpload.Image = global::Media_Organiser.Properties.Resources.upload;
+            this.btnUpload.Location = new System.Drawing.Point(0, 7);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(53, 39);
+            this.btnUpload.TabIndex = 2;
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.BtnUpload_Click);
+            // 
             // menuHeader
             // 
             this.menuHeader.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -69,6 +99,21 @@
             this.menuHeader.Name = "menuHeader";
             this.menuHeader.Size = new System.Drawing.Size(53, 39);
             this.menuHeader.TabIndex = 4;
+            // 
+            // btnMenu
+            // 
+            this.btnMenu.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenu.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenu.Image = global::Media_Organiser.Properties.Resources.menu;
+            this.btnMenu.Location = new System.Drawing.Point(0, 0);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(53, 39);
+            this.btnMenu.TabIndex = 1;
+            this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
             // 
             // menuTimer
             // 
@@ -79,11 +124,14 @@
             // 
             this.lstPlaylists.AllowUserToAddRows = false;
             this.lstPlaylists.AllowUserToDeleteRows = false;
+            this.lstPlaylists.AllowUserToResizeColumns = false;
+            this.lstPlaylists.AllowUserToResizeRows = false;
             this.lstPlaylists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lstPlaylists.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tblName,
             this.tblNoRecords});
             this.lstPlaylists.Location = new System.Drawing.Point(28, 57);
+            this.lstPlaylists.MultiSelect = false;
             this.lstPlaylists.Name = "lstPlaylists";
             this.lstPlaylists.ReadOnly = true;
             this.lstPlaylists.RowHeadersVisible = false;
@@ -159,51 +207,6 @@
             this.btnEditPlaylist.UseVisualStyleBackColor = true;
             this.btnEditPlaylist.Click += new System.EventHandler(this.btnEditPlaylist_Click);
             // 
-            // btnMain
-            // 
-            this.btnMain.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.btnMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnMain.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMain.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.btnMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMain.Image = global::Media_Organiser.Properties.Resources._return;
-            this.btnMain.Location = new System.Drawing.Point(0, 52);
-            this.btnMain.Name = "btnMain";
-            this.btnMain.Size = new System.Drawing.Size(53, 39);
-            this.btnMain.TabIndex = 3;
-            this.btnMain.UseVisualStyleBackColor = false;
-            this.btnMain.Click += new System.EventHandler(this.BtnMain_Click);
-            // 
-            // btnUpload
-            // 
-            this.btnUpload.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.btnUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpload.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpload.Image = global::Media_Organiser.Properties.Resources.upload;
-            this.btnUpload.Location = new System.Drawing.Point(0, 7);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(53, 39);
-            this.btnUpload.TabIndex = 2;
-            this.btnUpload.UseVisualStyleBackColor = false;
-            this.btnUpload.Click += new System.EventHandler(this.BtnUpload_Click);
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.btnMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnMenu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMenu.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Image = global::Media_Organiser.Properties.Resources.menu;
-            this.btnMenu.Location = new System.Drawing.Point(0, 0);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(53, 39);
-            this.btnMenu.TabIndex = 1;
-            this.btnMenu.UseVisualStyleBackColor = false;
-            this.btnMenu.Click += new System.EventHandler(this.BtnMenu_Click);
-            // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(28, 22);
@@ -211,23 +214,24 @@
             this.txtSearch.Size = new System.Drawing.Size(625, 20);
             this.txtSearch.TabIndex = 12;
             // 
-            // button1
+            // btnSearch
             // 
-            this.button1.Image = global::Media_Organiser.Properties.Resources.search;
-            this.button1.Location = new System.Drawing.Point(659, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Search";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSearch.Image = global::Media_Organiser.Properties.Resources.search;
+            this.btnSearch.Location = new System.Drawing.Point(659, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(70, 23);
+            this.btnSearch.TabIndex = 13;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // Playlists
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 445);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDeletePlaylist);
@@ -266,6 +270,6 @@
         private System.Windows.Forms.Button btnDeletePlaylist;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

@@ -16,16 +16,26 @@ namespace Media_Organiser
 
         private void EditPlaylist_Load(object sender, EventArgs e)
         {
-            LoadPlaylistSongs(name);
+            LoadPlaylistSongs();
         }
 
-        private void LoadPlaylistSongs(string playlistName)
+        private void LoadPlaylistSongs()
         {
-            if (!String.IsNullOrEmpty(playlistName))
+            if (!String.IsNullOrEmpty(name))
             {
-                txtPlaylistName.Text = playlistName;
-                foreach (Objects.Record record in DatabaseManager.GetSongsInPlaylist(playlistName))
+                lstPlaylistSongs.Rows.Clear();
+                txtPlaylistName.Text = name;
+                foreach (Objects.Record record in DatabaseManager.GetSongsInPlaylist(name))
                     lstPlaylistSongs.Rows.Add(record.name, record.type);
+            }
+        }
+
+        private void btnRemoveRecords_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in lstPlaylistSongs.SelectedRows)
+            {
+                DatabaseManager.RemoveRecordFromPlaylist(name, row.Cells[0].Value.ToString());
+                LoadPlaylistSongs();
             }
         }
     }

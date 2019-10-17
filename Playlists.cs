@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Media_Organiser
 {
@@ -78,9 +78,12 @@ namespace Media_Organiser
 
         private void BtnDeletePlaylist_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in lstPlaylists.SelectedRows)
-                DatabaseManager.DeletePlaylist(row.Cells[0].Value.ToString());
-            LoadAllPlaylists();
+            if (MessageBox.Show("Are you sure you want to delete this playlist", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in lstPlaylists.SelectedRows)
+                    DatabaseManager.DeletePlaylist(row.Cells[0].Value.ToString());
+                LoadAllPlaylists();
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -92,6 +95,19 @@ namespace Media_Organiser
         {
             var editPlaylist = new EditPlaylist(lstPlaylists.SelectedRows[0].Cells[0].Value.ToString());
             editPlaylist.Show();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            lstPlaylists.Rows.Clear();
+            if (!String.IsNullOrEmpty(txtSearch.Text))
+            {
+                foreach (Dictionary<Objects.Playlist, int> playlist in DatabaseManager.GetPlaylistsFiltered(txtSearch.Text))
+                    foreach (KeyValuePair<Objects.Playlist, int> item in playlist)
+                        lstPlaylists.Rows.Add(item.Key.name, item.Value);
+            }
+            else
+                LoadAllPlaylists();
         }
     }
 }

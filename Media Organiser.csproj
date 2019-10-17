@@ -50,12 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddSongToPlaylist.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddSongToPlaylist.Designer.cs">
-      <DependentUpon>AddSongToPlaylist.cs</DependentUpon>
-    </Compile>
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="EditPlaylist.cs">
       <SubType>Form</SubType>
@@ -90,9 +84,6 @@
     <Compile Include="RecordToPlaylist.Designer.cs">
       <DependentUpon>RecordToPlaylist.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddSongToPlaylist.resx">
-      <DependentUpon>AddSongToPlaylist.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="EditPlaylist.resx">
       <DependentUpon>EditPlaylist.cs</DependentUpon>
     </EmbeddedResource>

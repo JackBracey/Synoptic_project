@@ -27,7 +27,7 @@ namespace Media_Organiser
 
         private void btnRemoveSelected_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure?", "Are you sure you want to delete this playlist?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete this playlist?", "Are you sure?", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 DatabaseManager.DeletePlaylist(lstPlaylists.SelectedRows[0].Cells[0].Value.ToString());
                 LoadAllPlaylists();
@@ -48,6 +48,19 @@ namespace Media_Organiser
                     }
                 }
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            lstPlaylists.Rows.Clear();
+            if (!String.IsNullOrEmpty(txtSearch.Text))
+            {
+                foreach (Dictionary<Objects.Playlist, int> playlist in DatabaseManager.GetPlaylistsFiltered(txtSearch.Text))
+                    foreach (KeyValuePair<Objects.Playlist, int> item in playlist)
+                        lstPlaylists.Rows.Add(item.Key.name, item.Value);
+            }
+            else
+                LoadAllPlaylists();
         }
     }
 }
