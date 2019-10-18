@@ -80,23 +80,28 @@ namespace Media_Organiser
         {
             if (!String.IsNullOrEmpty(txtDir.Text))
             {
-                String dir = txtDir.Text;
-                lstFiles.Rows.Clear();
-
-                DirectoryInfo di = new DirectoryInfo(dir);
-                FileInfo[] files = di.GetFiles();
-
-                foreach (FileInfo file in files)
+                if (System.IO.Directory.Exists(txtDir.Text))
                 {
-                    if (fileType.Text.Equals("*") || fileType.Text.Equals("Select File Type") ||
-                        fileType.Text.ToLower().Equals(file.Extension.ToLower()))
+                    String dir = txtDir.Text;
+                    lstFiles.Rows.Clear();
+
+                    DirectoryInfo di = new DirectoryInfo(dir);
+                    FileInfo[] files = di.GetFiles();
+
+                    foreach (FileInfo file in files)
                     {
-                        Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
-                        lstFiles.Rows.Add(icon, file.Directory, file.Name, file.Extension);
+                        if (fileType.Text.Equals("*") || fileType.Text.Equals("Select File Type") ||
+                            fileType.Text.ToLower().Equals(file.Extension.ToLower()))
+                        {
+                            Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
+                            lstFiles.Rows.Add(icon, file.Directory, file.Name, file.Extension);
+                        }
                     }
+                    DatabaseManager.UpdateSettings(DatabaseManager.DIR_SETTING, txtDir.Text);
+                    DatabaseManager.UpdateSettings(DatabaseManager.TYPE_SETTING, fileType.Text);
                 }
-                DatabaseManager.UpdateSettings(DatabaseManager.DIR_SETTING, txtDir.Text);
-                DatabaseManager.UpdateSettings(DatabaseManager.TYPE_SETTING, fileType.Text);
+                else
+                    MessageBox.Show("This file directory does not exist");
             }
         }
 
