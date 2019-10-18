@@ -52,6 +52,8 @@
             // 
             this.lstPlaylistSongs.AllowUserToAddRows = false;
             this.lstPlaylistSongs.AllowUserToDeleteRows = false;
+            this.lstPlaylistSongs.AllowUserToResizeColumns = false;
+            this.lstPlaylistSongs.AllowUserToResizeRows = false;
             this.lstPlaylistSongs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lstPlaylistSongs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tblName,

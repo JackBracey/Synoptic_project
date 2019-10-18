@@ -32,10 +32,13 @@ namespace Media_Organiser
 
         private void btnRemoveRecords_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in lstPlaylistSongs.SelectedRows)
+            if (MessageBox.Show("Are you sure you want to remove the selected records", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                DatabaseManager.RemoveRecordFromPlaylist(name, row.Cells[0].Value.ToString());
-                LoadPlaylistSongs();
+                foreach (DataGridViewRow row in lstPlaylistSongs.SelectedRows)
+                {
+                    DatabaseManager.RemoveRecordFromPlaylist(name, row.Cells[0].Value.ToString());
+                    LoadPlaylistSongs();
+                }
             }
         }
 

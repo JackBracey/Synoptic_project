@@ -67,13 +67,18 @@ namespace Media_Organiser
 
         private void BtnNewPlaylist_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtPlaylistName.Text))
-                MessageBox.Show("Enter a playlist name");
-            else
+
+            if (!String.IsNullOrEmpty(txtPlaylistName.Text))
             {
-                DatabaseManager.AddPlaylist(txtPlaylistName.Text);
-                LoadAllPlaylists();
-            }
+                if (MessageBox.Show("Are you sure you want to add " + txtPlaylistName.Text, "Confirmation",
+                MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    DatabaseManager.AddPlaylist(txtPlaylistName.Text);
+                    LoadAllPlaylists();
+                    txtPlaylistName.Text = "";
+                }
+            } else
+                MessageBox.Show("Enter a playlist name");
         }
 
         private void BtnDeletePlaylist_Click(object sender, EventArgs e)
