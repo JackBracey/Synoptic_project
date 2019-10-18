@@ -201,7 +201,7 @@
             this.lstFiles.Size = new System.Drawing.Size(773, 347);
             this.lstFiles.TabIndex = 12;
             // 
-            // Icon
+            // tblIcon
             // 
             this.tblIcon.HeaderText = "Icon";
             this.tblIcon.Name = "tblIcon";
@@ -244,6 +244,7 @@
             this.Controls.Add(this.menuBody);
             this.Controls.Add(this.menuHeader);
             this.Controls.Add(this.lstFiles);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FileUpload";
             this.Text = "File Upload";

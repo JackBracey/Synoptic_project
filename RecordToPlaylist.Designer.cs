@@ -63,6 +63,8 @@
             // 
             this.lstPlaylists.AllowUserToAddRows = false;
             this.lstPlaylists.AllowUserToDeleteRows = false;
+            this.lstPlaylists.AllowUserToResizeColumns = false;
+            this.lstPlaylists.AllowUserToResizeRows = false;
             this.lstPlaylists.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lstPlaylists.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tblName,
@@ -138,6 +140,7 @@
             this.Controls.Add(this.lstPlaylists);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RecordToPlaylist";
             this.Text = "Add Record To Playlist";

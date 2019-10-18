@@ -88,6 +88,7 @@
             this.btnDelete.Text = "Delete Playlist";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnRemoveRecords
             // 
@@ -110,6 +111,7 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lstPlaylistSongs);
             this.Controls.Add(this.txtPlaylistName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditPlaylist";
             this.Text = "Edit Playlist";

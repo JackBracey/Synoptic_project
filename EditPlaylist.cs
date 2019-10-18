@@ -38,5 +38,17 @@ namespace Media_Organiser
                 LoadPlaylistSongs();
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you wish to delete this playlist", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (!String.IsNullOrEmpty(name))
+                {
+                    DatabaseManager.DeletePlaylist(name);
+                    this.Hide();
+                }
+            }
+        }
     }
 }

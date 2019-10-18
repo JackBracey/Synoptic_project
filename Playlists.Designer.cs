@@ -241,6 +241,7 @@
             this.Controls.Add(this.menuBody);
             this.Controls.Add(this.menuHeader);
             this.Controls.Add(this.lstPlaylists);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Playlists";
             this.Text = "Playlists";

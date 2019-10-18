@@ -214,6 +214,7 @@
             this.Controls.Add(this.menuBody);
             this.Controls.Add(this.menuHeader);
             this.Controls.Add(this.lstRecords);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Media Organiser";
