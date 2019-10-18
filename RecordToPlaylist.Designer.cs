@@ -36,12 +36,13 @@
             this.tblNumberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSelectPlaylist = new System.Windows.Forms.Button();
             this.btnRemoveSelected = new System.Windows.Forms.Button();
+            this.btnPlaylist = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.lstPlaylists)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(105, 12);
+            this.txtSearch.Location = new System.Drawing.Point(105, 21);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(297, 20);
             this.txtSearch.TabIndex = 0;
@@ -49,7 +50,7 @@
             // btnSearch
             // 
             this.btnSearch.Image = global::Media_Organiser.Properties.Resources.search;
-            this.btnSearch.Location = new System.Drawing.Point(426, 10);
+            this.btnSearch.Location = new System.Drawing.Point(426, 19);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(71, 23);
             this.btnSearch.TabIndex = 1;
@@ -66,7 +67,7 @@
             this.lstPlaylists.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tblName,
             this.tblNumberOfRecords});
-            this.lstPlaylists.Location = new System.Drawing.Point(29, 45);
+            this.lstPlaylists.Location = new System.Drawing.Point(29, 54);
             this.lstPlaylists.MultiSelect = false;
             this.lstPlaylists.Name = "lstPlaylists";
             this.lstPlaylists.ReadOnly = true;
@@ -91,7 +92,7 @@
             // 
             // btnSelectPlaylist
             // 
-            this.btnSelectPlaylist.Location = new System.Drawing.Point(477, 347);
+            this.btnSelectPlaylist.Location = new System.Drawing.Point(477, 356);
             this.btnSelectPlaylist.Name = "btnSelectPlaylist";
             this.btnSelectPlaylist.Size = new System.Drawing.Size(124, 23);
             this.btnSelectPlaylist.TabIndex = 3;
@@ -102,7 +103,7 @@
             // btnRemoveSelected
             // 
             this.btnRemoveSelected.Image = global::Media_Organiser.Properties.Resources.delete;
-            this.btnRemoveSelected.Location = new System.Drawing.Point(29, 347);
+            this.btnRemoveSelected.Location = new System.Drawing.Point(29, 356);
             this.btnRemoveSelected.Name = "btnRemoveSelected";
             this.btnRemoveSelected.Size = new System.Drawing.Size(124, 23);
             this.btnRemoveSelected.TabIndex = 4;
@@ -111,11 +112,27 @@
             this.btnRemoveSelected.UseVisualStyleBackColor = true;
             this.btnRemoveSelected.Click += new System.EventHandler(this.btnRemoveSelected_Click);
             // 
+            // btnPlaylist
+            // 
+            this.btnPlaylist.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnPlaylist.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPlaylist.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPlaylist.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.btnPlaylist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlaylist.Image = global::Media_Organiser.Properties.Resources.playlist;
+            this.btnPlaylist.Location = new System.Drawing.Point(548, 9);
+            this.btnPlaylist.Name = "btnPlaylist";
+            this.btnPlaylist.Size = new System.Drawing.Size(53, 39);
+            this.btnPlaylist.TabIndex = 5;
+            this.btnPlaylist.UseVisualStyleBackColor = false;
+            this.btnPlaylist.Click += new System.EventHandler(this.btnPlaylist_Click);
+            // 
             // RecordToPlaylist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(625, 382);
+            this.Controls.Add(this.btnPlaylist);
             this.Controls.Add(this.btnRemoveSelected);
             this.Controls.Add(this.btnSelectPlaylist);
             this.Controls.Add(this.lstPlaylists);
@@ -139,5 +156,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tblName;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblNumberOfRecords;
         private System.Windows.Forms.Button btnRemoveSelected;
+        private System.Windows.Forms.Button btnPlaylist;
     }
 }

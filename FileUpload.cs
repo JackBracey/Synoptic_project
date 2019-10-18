@@ -103,7 +103,6 @@ namespace Media_Organiser
         private void BtnClear_Click(object sender, EventArgs e)
         {
             lstFiles.Rows.Clear();
-            InitialiseValues();
         }
 
         private void BtnUpload_Click(object sender, EventArgs e)
@@ -118,6 +117,8 @@ namespace Media_Organiser
             }
             if (failed.Count >= 1)
                 ShowPopup(failed);
+            else
+                MessageBox.Show("Records added successfully");
         }
 
         private void ShowPopup(ArrayList failed)

@@ -62,5 +62,12 @@ namespace Media_Organiser
             else
                 LoadAllPlaylists();
         }
+
+        private void btnPlaylist_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var playlists = new Playlists();
+            playlists.Show();
+        }
     }
 }

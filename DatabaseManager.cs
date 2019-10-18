@@ -41,7 +41,7 @@ namespace Media_Organiser
                     Console.Write(e);
                 }
 
-                if (success)
+                if (!success)
                     return record;
                 return null;
             }
